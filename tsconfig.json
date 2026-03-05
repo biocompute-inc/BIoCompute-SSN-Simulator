@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "wasm-engine": ["./wasm-engine/pkg"]
     }
   },
   "include": [
