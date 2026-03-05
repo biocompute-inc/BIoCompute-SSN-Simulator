@@ -37,24 +37,13 @@ To run this project locally, you will need both Node.js and the Rust toolchain i
    cargo install wasm-pack
 
 ### 1. Clone the Repository
-    ```bash
     git clone https://github.com/biocompute-inc/BIoCompute-SSN-Simulator.git
     cd nanopore-simulator
-
-    ```
 ### 2. Build the Rust Engine
-    ```bash
     cd wasm-engine
     wasm-pack build --target web
     cd ..
-    ```
 ### 3. Install Frontend Dependencies:
-
-    ```bash
     npm install
-    ```
-
 ### 4. Start the Development Server:
-    ```
     npm run dev
-    ```
