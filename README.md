@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+#  NanoSim  (WASM)
+**Single-Molecule Nanopore Analysis & Simulation Platform**
 
-## Getting Started
+NanoSim is a high-performance, real-time nanopore sequencing simulator. It combines a highly accurate stochastic physics engine written in **Rust (WebAssembly)** with a responsive, modern frontend built in **Next.js & React**. 
 
-First, run the development server:
+This platform allows researchers and developers to simulate time-resolved ionic flux, experiment with different membrane materials (SiN, MoS₂, Graphene), and visualize the quantum-scale electronics of single-molecule translocation (ssDNA, dsDNA, Proteins) in real-time.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+##  Features
+* **High-Performance Physics Engine:** Built in Rust and compiled to WebAssembly (WASM) for lightning-fast, zero-block bulk array processing.
+* **Realistic Stochastic Modeling:** Simulates Gaussian variance in molecule dwell times, hydrodynamic confinement drag, and realistic arrival Poisson distributions based on concentration.
+* **Advanced Signal Processing:** Includes a Schmitt Trigger (Hysteresis) algorithm for robust event detection against high thermal noise.
+* **Real-time Spectral Analysis:** Computes AC-coupled Fast Fourier Transforms (FFT) to visualize the Noise Power Spectral Density (PSD) and TIA filter roll-off.
+* **Interactive Data Visualization:** Downsampled trace rendering with precise threshold bounding, population distribution histograms, and depth-vs-dwell scatter plots.
+* **Exportable Data:** One-click export of raw physical and measured current traces to `.csv` for external analysis.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+##  Tech Stack
+* **Frontend:** Next.js (App Router), React, Tailwind CSS
+* **Charting:** Recharts
+* **Backend / Physics Engine:** Rust, `wasm-bindgen`, `rustfft`
+* **Build Tools:** `wasm-pack`, Webpack (configured for static WASM asset loading)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+##  Getting Started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To run this project locally, you will need both Node.js and the Rust toolchain installed on your machine.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Prerequisites
+1. **Node.js** (v18 or higher) - [Install here](https://nodejs.org/)
+2. **Rust & Cargo** - [Install via rustup](https://rustup.rs/)
+3. **Wasm-Pack** - Used to compile Rust into WebAssembly.
+   ```bash
+   cargo install wasm-pack
 
-## Deploy on Vercel
+### 1. Clone the Repository
+    ```bash
+    git clone https://github.com/biocompute-inc/BIoCompute-SSN-Simulator.git
+    cd nanopore-simulator
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    ```
+### 2. Build the Rust Engine
+    ```bash
+    cd wasm-engine
+    wasm-pack build --target web
+    cd ..
+    ```
+### 3. Install Frontend Dependencies:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    ```bash
+    npm install
+    ```
+
+### 4. Start the Development Server:
+    ```
+    npm run dev
+    ```
